@@ -158,8 +158,7 @@ async def serverinfo(ctx):
     embed.set_thumbnail(url=f'{ctx.guild.icon_url}')
     embed.set_author(name='剣 Kruger Bot ☕', icon_url='https://media.discordapp.net/attachments/859201102610956358/915944247943901194/Perfil_Bot_Kruger.jpg?width=584&height=584'),
     embed.add_field(name=f'💼 Name do Server',value=f'`{ctx.guild.name}`', inline=False)
-    embed.add_field(name=f'⌛ Quantidade de Membros',value=f'`{ctx.guild.member_count}`',inline=False)
-    embed.add_field(name=f'🌎 Região do Server',value=f'`{ctx.message.guild.region}`',inline=False)
+    embed.add_field(name=f'⌛ Quantidade de Membros',value=f'`{ctx.guild.member_count}`',inline=False)    
     embed.add_field(name=f'💻 ID do Server',value=f'`{ctx.guild.id}`',inline=False)
     embed.set_footer(text=f'Solicitado por {ctx.author}')
     
