@@ -147,18 +147,17 @@ async def userinfo(ctx, user:discord.Member=None):
 #server info
 @bot.command()
 async def serverinfo(ctx):
-    print (f'server info usado pelo {ctx.author}!')
-    role_count = len(ctx.guild.roles)
-
+    print (f'server info usado pelo {ctx.author}!'),
     embed = discord.Embed(
         timestamp = ctx.message.created_at,
         colour = 16777215,
-        description = f'Aqui estão algumas informações do **{ctx.guild.name}**'
+        description = f'Aqui estão algumas informações do server **{ctx.guild.name}**'
     )
     embed.set_thumbnail(url=f'{ctx.guild.icon_url}')
     embed.set_author(name='剣 Kruger Bot ☕', icon_url='https://media.discordapp.net/attachments/859201102610956358/915944247943901194/Perfil_Bot_Kruger.jpg?width=584&height=584'),
-    embed.add_field(name=f'💼 Name do Server',value=f'`{ctx.guild.name}`', inline=False)
-    embed.add_field(name=f'⌛ Quantidade de Membros',value=f'`{ctx.guild.member_count}`',inline=False)    
+    embed.add_field(name=f'🌺 Name do Server',value=f'`{ctx.guild.name}`', inline=False)
+    embed.add_field(name=f'📋 Descrição do Server',value=f'`{ctx.guild.description}`',inline=False)
+    embed.add_field(name=f'🔮 Quantidade de Membros',value=f'`{ctx.guild.member_count}`',inline=False)
     embed.add_field(name=f'💻 ID do Server',value=f'`{ctx.guild.id}`',inline=False)
     embed.set_footer(text=f'Solicitado por {ctx.author}')
     
@@ -170,12 +169,6 @@ async def serverinfo(ctx):
 
     #add reações na msg
     await ctx.send(embed = embed)
-
-#comando ping
-@bot.command()
-async def ping(ctx):
-    await ctx.send(f"Ping: {round(bot.latency + 1000)}ms")
-
 
 #treino/sus
 
