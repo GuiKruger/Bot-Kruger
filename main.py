@@ -128,7 +128,7 @@ async def userinfo(ctx, user:discord.Member=None):
     )
     embed.set_author(name='剣 Kruger Bot ☕', icon_url='https://media.discordapp.net/attachments/859201102610956358/915944247943901194/Perfil_Bot_Kruger.jpg?width=584&height=584'),
     embed.set_thumbnail(url=user.avatar_url)
-    embed.add_field(name=f'💼 Name do Discord',value=f'`{user.display_name}`', inline=False)
+    embed.add_field(name=f'💼 Nome do Discord',value=f'`{user.display_name}`', inline=False)
     embed.add_field(name=f'💻 ID do Discord',value=f'`{user.id}`',inline=False)
     embed.add_field(name=f'📆 Conta criada há',value=f'`{user.created_at}`',inline=False)
     embed.add_field(name=f'⏰ Ingressou em',value=f'`{user.joined_at}`',inline=False)
