@@ -57,8 +57,19 @@ async def help(ctx):
     #delet comando usado pelo user
     await ctx.message.delete()
     
+    await ctx.send(embed = embed) 
+ #comandos do bot
+
+#embeds
+
+@bot.command()
+async def port(ctx):
+    embed = discord.Embed(
+        title = "Portifólio - Kruger Design 🔹"
+        color = 16777215
+    )
+    embed.set_image(url="https://media.discordapp.net/attachments/859201102610956358/947507414972891146/unknown.png?width=810&height=360")
     await ctx.send(embed = embed)
-#comandos do bot
 
 #plastico bolha
 @bot.command()
@@ -177,13 +188,6 @@ async def visão_delas(ctx):
     print ("comando usado!")
     await ctx.send(f"> <a:fogo_emoji:912122546525184082> Não olha pra cima!")
     await ctx.author.send(f"https://media.discordapp.net/attachments/716824742946144277/901567412611207229/IMG_20211020_174132005_HDR.jpg?width=438&height=584")
-
-@bot.command()
-async def cx(ctx):
-    mgs = ctx.send("Pegou o fogo man!")
-    msg = await ctx.send(f"> 👻" "<a:fogo_emoji:912122546525184082>\n" "🟪" "🟪" "🟪" "🟪" "🟪" "🟪" "🟪" "🟪" "🟪" "🟪" "🟪" "🟪" "🟪" "🟪" "🟪",)
-    await msg.add_reaction("◀")
-    await msg.add_reaction("▶")
 
 #inicialização─╯
 bot.run(token)
