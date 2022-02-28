@@ -18,6 +18,66 @@ token = os.getenv('token')
 
 bot = commands.Bot(command_prefix=prefixo, case_insensitive=True, help_command=None)
 
+page1 = discord.Embed(
+    title="🦋 | Portifólio", 
+    description="Para conferir nossas artes use as reaçoes abaixo para se deslocar.", 
+    colour=4250015
+    )
+page1.set_image(url="https://media.discordapp.net/attachments/859201102610956358/947507414972891146/unknown.png?width=810&height=360")
+page1.set_footer(text="1/8")
+
+page2 = discord.Embed(
+    title="🦋 | Portifólio",
+    colour=4250015
+    )
+page2.set_image(url="https://media.discordapp.net/attachments/929153410555596840/939533435725291560/5ea2adca-1b21-40a5-a3f0-7dde1c57eb15.png?width=1080&height=540")
+page2.set_footer(text="2/8")
+
+
+page3 = discord.Embed(
+    title="🦋 | Portifólio",
+    colour=4250015
+    )
+page3.set_image(url="https://media.discordapp.net/attachments/929153410555596840/934444785194893312/unknown.png?width=720&height=270")
+page3.set_footer(text="3️/8")
+
+page4 = discord.Embed(
+    title="🦋 | Portifólio",
+    colour=4250015
+    )
+page4.set_image(url="https://media.discordapp.net/attachments/929153410555596840/934445378219175956/unknown.png?width=1080&height=450")
+page4.set_footer(text="4️/8")
+
+page5 = discord.Embed(
+    title="🦋 | Portifólio",
+    colour=4250015
+    )
+page5.set_image(url="https://images-ext-1.discordapp.net/external/D76nt8pFN2RBA1YkhMLrHfXUWSPvAHwNvD3ZD5g3Mbs/%3Fwidth%3D1080%26height%3D450/https/media.discordapp.net/attachments/859201102610956358/944429142668116058/unknown.png?width=972&height=405")
+page5.set_footer(text="5️/8")
+
+page6 = discord.Embed(
+    title="🦋 | Portifólio",
+    colour=4250015
+    )
+page6.set_image(url="https://media.discordapp.net/attachments/859201102610956358/945503093263572992/unknown.png?width=810&height=360")
+page6.set_footer(text="6️/8")
+
+page7 = discord.Embed(
+    title="🦋 | Portifólio",
+    colour=4250015
+    )
+page7.set_image(url="https://media.discordapp.net/attachments/859201102610956358/944045460010704926/unknown.png?width=1080&height=450")
+page7.set_footer(text="7️/8")
+
+page8 = discord.Embed(
+    title="🦋 | Portifólio",
+    colour=4250015
+    )
+page8.set_image(url="https://media.discordapp.net/attachments/859201102610956358/944024645806485534/unknown.png?width=1080&height=450")
+page8.set_footer(text="8️/8")
+
+bot.portf_pages = [page1, page2, page3, page4, page5, page6, page7, page8]
+
 #Status do Bot
 @bot.event
 async def on_ready():
@@ -61,15 +121,58 @@ async def help(ctx):
  #comandos do bot
 
 #embeds
-
 @bot.command()
-async def port(ctx):
+async def embed1(ctx):
     embed = discord.Embed(
-        title = "Portifólio - Kruger Design 🔹"
-        color = 16777215
+        title = "Portifólio - Kruger Design 🔹",
+        description = f"**Portifólio**\nConfira alguns de nossos trabalhos para ter uma ideia do nosso produto final.\n \n**Como eu vejo?**\nSimples! digite `k.portif` em <#947553146509602917> após isso use as reações abaixo para se deslocar de uma embed para outra, cada embed tera uma arte diferente feita pela nossa equipe.",
+        color = 4250015
     )
     embed.set_image(url="https://media.discordapp.net/attachments/859201102610956358/947507414972891146/unknown.png?width=810&height=360")
     await ctx.send(embed = embed)
+
+
+#portifólio
+@bot.command()
+async def portif(ctx):
+    print (f'"portifólio" usado por {ctx.author}')
+    buttons = [u"\u23EA", u"\u2B05", u"\u27A1", u"\u23E9"] # skip to start, left, right, skip to end
+    current = 0
+    await ctx.send(f"> <a:fogo_emoji:912122546525184082>||{ctx.author.mention}||")
+    await ctx.message.delete()
+    msg = await ctx.send(embed=bot.portf_pages[current])
+    
+    for button in buttons:
+        await msg.add_reaction(button)
+        
+    while True:
+        try:
+            reaction, user = await bot.wait_for("reaction_add", check=lambda reaction, user: user == ctx.author and reaction.emoji in buttons, timeout=60.0)
+
+        except asyncio.TimeoutError:
+            return print("test")
+
+        else:
+            previous_page = current
+            if reaction.emoji == u"\u23EA":
+                current = 0
+                
+            elif reaction.emoji == u"\u2B05":
+                if current > 0:
+                    current -= 1
+                    
+            elif reaction.emoji == u"\u27A1":
+                if current < len(bot.portf_pages)-1:
+                    current += 1
+
+            elif reaction.emoji == u"\u23E9":
+                current = len(bot.portf_pages)-1
+
+            for button in buttons:
+                await msg.remove_reaction(button, ctx.author)
+
+            if current != previous_page:
+                await msg.edit(embed=bot.portf_pages[current])
 
 #plastico bolha
 @bot.command()
